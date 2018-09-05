@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# SEQ=81
+
+. /etc/profile
+
+case "$1" in
+  start)
+    if [ `pidof MMDVMHost` ] ; then
+      exit 0
+    fi
+    CONFIG="/storage/.config/MMDVM.ini"
+    if [ -f $CONFIG ] ; then
+      DAEMON=$(grep ^Daemon= $CONFIG | cut -d= -f2)
+      if [ "$DAEMON" == "1" ] ; then
+        sed -e 's/Daemon=.*/Daemon=0/g' -i $CONFIG
+      fi
+      (
+        while : ; do
+          NDENABLED=$(grep "^\[NextionDriver\]" $CONFIG)
+          if [ "$NDENABLED" != "" ]; then
+            pkill -9 -f NextionDriver
+            NextionDriver -c $CONFIG
+          fi
+          sleep 2
+          MMDVMHost $CONFIG | logger -t mmdvmhost
+        done
+      ) &
+    fi
+    ;;
+  stop)
+    pkill -TERM -f 'NextionDriver|MMDVMHost'
+    sleep 0.5
+    pkill -9 -f 'NextionDriver|MMDVMHost|mmdvmhost'
+    ;;
+esac
+
+exit 0

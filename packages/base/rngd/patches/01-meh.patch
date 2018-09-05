@@ -1,0 +1,12 @@
+diff --git a/rngtest.c b/rngtest.c
+index 86117d2..7d1393f 100644
+--- a/rngtest.c
++++ b/rngtest.c
+@@ -57,7 +57,6 @@ const char *argp_program_version =
+ 	"warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.";
+ 
+ const char *argp_program_bug_address = PACKAGE_BUGREPORT;
+-error_t argp_err_exit_status = EXIT_USAGE;
+ 
+ static char doc[] =
+ 	"Check the randomness of data using FIPS 140-2 RNG tests.\n"

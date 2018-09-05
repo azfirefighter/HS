@@ -1,0 +1,39 @@
+diff --git a/coreutils/date.c b/coreutils/date.c
+index 3414d38..20e8e5c 100644
+--- a/coreutils/date.c
++++ b/coreutils/date.c
+@@ -274,7 +274,7 @@ int date_main(int argc UNUSED_PARAM, char **argv)
+ #if ENABLE_FEATURE_DATE_NANO
+ 		/* libc has incredibly messy way of doing this,
+ 		 * typically requiring -lrt. We just skip all this mess */
+-		syscall(__NR_clock_gettime, CLOCK_REALTIME, &ts);
++		clock_gettime(CLOCK_REALTIME, &ts);
+ #else
+ 		time(&ts.tv_sec);
+ #endif
+diff --git a/libbb/time.c b/libbb/time.c
+index f9b8da0..d6c19d4 100644
+--- a/libbb/time.c
++++ b/libbb/time.c
+@@ -257,7 +257,7 @@ char* FAST_FUNC strftime_YYYYMMDDHHMMSS(char *buf, unsigned len, time_t *tp)
+  * typically requiring -lrt. We just skip all this mess */
+ static void get_mono(struct timespec *ts)
+ {
+-	if (syscall(__NR_clock_gettime, CLOCK_MONOTONIC, ts))
++	if (clock_gettime(CLOCK_MONOTONIC, ts))
+ 		bb_error_msg_and_die("clock_gettime(MONOTONIC) failed");
+ }
+ unsigned long long FAST_FUNC monotonic_ns(void)
+diff --git a/runit/runsv.c b/runit/runsv.c
+index ccc762d..3e753dc 100644
+--- a/runit/runsv.c
++++ b/runit/runsv.c
+@@ -55,7 +55,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * typically requiring -lrt. We just skip all this mess */
+ static void gettimeofday_ns(struct timespec *ts)
+ {
+-	syscall(__NR_clock_gettime, CLOCK_REALTIME, ts);
++	clock_gettime(CLOCK_REALTIME, ts);
+ }
+ #else
+ static void gettimeofday_ns(struct timespec *ts)

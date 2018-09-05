@@ -1,0 +1,48 @@
+diff --git a/gdb/cli/cli-script.c b/gdb/cli/cli-script.c
+index 85f00c7..dd946d3 100644
+--- a/gdb/cli/cli-script.c
++++ b/gdb/cli/cli-script.c
+@@ -39,6 +39,19 @@
+ 
+ #include <vector>
+ 
++// TODO fix later
++#include <sstream>
++namespace std
++{
++   template <typename T>
++   std::string to_string(T Value)
++   {
++       std::ostringstream TempStream;
++       TempStream << Value;
++       return TempStream.str();
++   }
++}
++
+ /* Prototypes for local functions.  */
+ 
+ static enum command_control_type
+diff --git a/gdb/ui-style.c b/gdb/ui-style.c
+index e61fb06..9595482 100644
+--- a/gdb/ui-style.c
++++ b/gdb/ui-style.c
+@@ -19,6 +19,19 @@
+ #include "defs.h"
+ #include "ui-style.h"
+ 
++// TODO fix later
++#include <sstream>
++namespace std
++{
++   template <typename T>
++   std::string to_string(T Value)
++   {
++       std::ostringstream TempStream;
++       TempStream << Value;
++       return TempStream.str();
++   }
++}
++
+ /* A regular expression that is used for matching ANSI terminal escape
+    sequences.  */
+ 
