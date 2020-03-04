@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="nxdnclients"
-PKG_VERSION="590a1ee466"
+PKG_VERSION="77f55180af"
 PKG_SITE="https://github.com/g4klx/NXDNClients/tree/master"
 PKG_URL="https://github.com/g4klx/NXDNClients/archive/$PKG_VERSION.tar.gz"
 
