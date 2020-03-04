@@ -1,4 +1,4 @@
-From 4c18945186dfb71b92d246bf2d1504adbd26eebc Mon Sep 17 00:00:00 2001
+From 141aa663e3c9c5e77f0aac08b21dba7b93e5e36d Mon Sep 17 00:00:00 2001
 From: Stefan Saraev <stefan@saraev.ca>
 Date: Sat, 12 Jan 2019 19:11:11 +0200
 Subject: [PATCH 1/3] add cmake buildsystem
@@ -94,7 +94,7 @@ index 0000000..dafe15e
 2.25.0
 
 
-From 48b12cd5cb987d02af9e09256c24b39fddf58aac Mon Sep 17 00:00:00 2001
+From a8e2fd00ecf231d1a0c24b5ebb49a6b20cc09080 Mon Sep 17 00:00:00 2001
 From: Stefan Saraev <stefan@saraev.ca>
 Date: Sat, 14 Apr 2018 11:35:26 +0300
 Subject: [PATCH 2/3] disable oled fullscreenwtfscroll
@@ -120,7 +120,7 @@ index 8dbfbe5..b1907c4 100644
 2.25.0
 
 
-From fd832c1fc1cf8110c511ea3cb2563180034ee96a Mon Sep 17 00:00:00 2001
+From efb35abbfcdfd5c2598e07d73c8fd172f73e0502 Mon Sep 17 00:00:00 2001
 From: Stefan Saraev <stefan@saraev.ca>
 Date: Wed, 22 Jan 2020 23:16:17 +0200
 Subject: [PATCH 3/3] nope. this hurts. too much..
@@ -131,7 +131,7 @@ Subject: [PATCH 3/3] nope. this hurts. too much..
  2 files changed, 43 deletions(-)
 
 diff --git a/DMRSlot.cpp b/DMRSlot.cpp
-index 8ebbce4..300df61 100644
+index f42def4..731a624 100644
 --- a/DMRSlot.cpp
 +++ b/DMRSlot.cpp
 @@ -47,9 +47,6 @@ DMR_OVCM_TYPES CDMRSlot::m_ovcm = DMR_OVCM_OFF;
@@ -144,7 +144,7 @@ index 8ebbce4..300df61 100644
  unsigned char* CDMRSlot::m_idle = NULL;
  
  FLCO           CDMRSlot::m_flco1;
-@@ -990,7 +987,6 @@ void CDMRSlot::writeEndNet(bool writeEnd)
+@@ -996,7 +993,6 @@ void CDMRSlot::writeEndNet(bool writeEnd)
  
  	m_networkWatchdog.stop();
  	m_netTimeoutTimer.stop();
@@ -152,7 +152,7 @@ index 8ebbce4..300df61 100644
  	m_netTimeout = false;
  
  	m_netFrames = 0U;
-@@ -1086,9 +1082,6 @@ void CDMRSlot::writeNetwork(const CDMRData& dmrData)
+@@ -1092,9 +1088,6 @@ void CDMRSlot::writeNetwork(const CDMRData& dmrData)
  			m_modem->writeDMRAbort(m_slotNo);
  		}
  
@@ -162,7 +162,7 @@ index 8ebbce4..300df61 100644
  		if (m_duplex) {
  			for (unsigned int i = 0U; i < NO_HEADERS_DUPLEX; i++)
  				writeQueueNet(data);
-@@ -1131,9 +1124,6 @@ void CDMRSlot::writeNetwork(const CDMRData& dmrData)
+@@ -1137,9 +1130,6 @@ void CDMRSlot::writeNetwork(const CDMRData& dmrData)
  				m_modem->writeDMRAbort(m_slotNo);
  			}
  
@@ -172,7 +172,7 @@ index 8ebbce4..300df61 100644
  			// Create a dummy start frame
  			unsigned char start[DMR_FRAME_LENGTH_BYTES + 2U];
  
-@@ -1322,9 +1312,6 @@ void CDMRSlot::writeNetwork(const CDMRData& dmrData)
+@@ -1328,9 +1318,6 @@ void CDMRSlot::writeNetwork(const CDMRData& dmrData)
  				m_modem->writeDMRAbort(m_slotNo);
  			}
  
@@ -182,7 +182,7 @@ index 8ebbce4..300df61 100644
  			// Create a dummy start frame
  			unsigned char start[DMR_FRAME_LENGTH_BYTES + 2U];
  
-@@ -1404,9 +1391,6 @@ void CDMRSlot::writeNetwork(const CDMRData& dmrData)
+@@ -1410,9 +1397,6 @@ void CDMRSlot::writeNetwork(const CDMRData& dmrData)
  
  			m_netEmbeddedData[m_netEmbeddedWriteN].reset();
  
@@ -192,7 +192,7 @@ index 8ebbce4..300df61 100644
  			m_netFrames++;
  
  			// Save details in case we need to infill data
-@@ -1551,9 +1535,6 @@ void CDMRSlot::writeNetwork(const CDMRData& dmrData)
+@@ -1557,9 +1541,6 @@ void CDMRSlot::writeNetwork(const CDMRData& dmrData)
  				writeQueueNet(data);
  		}
  
@@ -202,7 +202,7 @@ index 8ebbce4..300df61 100644
  		m_netFrames++;
  
  		// Save details in case we need to infill data
-@@ -1793,21 +1774,6 @@ void CDMRSlot::clock()
+@@ -1805,21 +1786,6 @@ void CDMRSlot::clock()
  			}
  		}
  	}
@@ -224,7 +224,7 @@ index 8ebbce4..300df61 100644
  }
  
  void CDMRSlot::writeQueueRF(const unsigned char *data)
-@@ -1901,11 +1867,6 @@ void CDMRSlot::init(unsigned int colorCode, bool embeddedLCOnly, bool dumpTAData
+@@ -1913,11 +1879,6 @@ void CDMRSlot::init(unsigned int colorCode, bool embeddedLCOnly, bool dumpTAData
  
  	m_rssiMapper     = rssiMapper;
  
@@ -236,7 +236,7 @@ index 8ebbce4..300df61 100644
  	m_idle = new unsigned char[DMR_FRAME_LENGTH_BYTES + 2U];
  	::memcpy(m_idle, DMR_IDLE_DATA, DMR_FRAME_LENGTH_BYTES + 2U);
  
-@@ -2161,7 +2122,6 @@ void CDMRSlot::enable(bool enabled)
+@@ -2173,7 +2134,6 @@ void CDMRSlot::enable(bool enabled)
  
  		m_networkWatchdog.stop();
  		m_netTimeoutTimer.stop();
