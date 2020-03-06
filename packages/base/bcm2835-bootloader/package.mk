@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-2.0-only
 
 PKG_NAME="bcm2835-bootloader"
-PKG_VERSION="bf83b506b4"
+PKG_VERSION="163d84cbeb"
 PKG_SITE="https://github.com/raspberrypi/firmware/tree/master"
 PKG_URL="https://github.com/raspberrypi/firmware/archive/$PKG_VERSION.tar.gz"
 
